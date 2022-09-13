@@ -22,6 +22,7 @@ jobs:
         with:
           cmd: | 
             curl -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" "${{github.event.pull_request._links.commits.href}}?per_page=100" | jq -r '[.[].commit.author | {name: .name, email: .email}] | unique | map("Co-authored-by: " + .name + " <" + .email + ">") | join("\n")'
+          multiline: true
       - name: Automerge PR
         uses: pascalgn/automerge-action@v0.14.3
         env:
