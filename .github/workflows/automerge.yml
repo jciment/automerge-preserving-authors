@@ -29,6 +29,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
           MERGE_LABELS: "!do-not-merge,ready-to-merge"
           MERGE_METHOD: "squash"
-          MERGE_COMMIT_MESSAGE: "{pullRequest.title} (#{pullRequest.number})\n${{ steps.authors.outputs.value }}"
+          # Important to keep 2 empty lines as https://docs.github.com/en/pull-requests/committing-changes-to-your-project/creating-and-editing-commits/creating-a-commit-with-multiple-authors#creating-co-authored-commits-on-the-command-line mentions
+          MERGE_COMMIT_MESSAGE: "{pullRequest.title} (#{pullRequest.number})\n\n\n\n${{ steps.authors.outputs.value }}" 
           MERGE_RETRIES: "20"
           MERGE_RETRY_SLEEP: "30000"
